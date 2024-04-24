@@ -1,7 +1,7 @@
 # Import Libraries
 import io
 import os
-import tkinter as tk
+import customtkinter as tk
 from tkinter import filedialog as fd
 from tkinter import messagebox
 
@@ -198,36 +198,40 @@ def decrypt(passwort_text):
         passwort_text.set("FERTIG")
 
 
-root = tk.Tk()
+tk.set_appearance_mode("dark")
+
+root = tk.CTk()
 root.title("bigPDF")
 root.geometry("800x300")
 
-frame = tk.Frame(root, bd=5)
+frame = tk.CTkFrame(root, border_width=5)
 frame.pack(fill="both")
 
-convert_button = tk.Button(frame, text="Zu Word umwandeln", command=convert_pdf_2_docx)
+convert_button = tk.CTkButton(
+    frame, text="Zu Word umwandeln", command=convert_pdf_2_docx
+)
 convert_button.pack(fill="x")
 
-merge_button = tk.Button(frame, text="Zusammenfügen", command=merge_pdfs)
+merge_button = tk.CTkButton(frame, text="Zusammenfügen", command=merge_pdfs)
 merge_button.pack(fill="x")
 
-bild_button = tk.Button(frame, text="Bilder extrahieren", command=get_images)
+bild_button = tk.CTkButton(frame, text="Bilder extrahieren", command=get_images)
 bild_button.pack(fill="x")
 
 eingabe_text = tk.StringVar(value="")
-drehen_button = tk.Button(
+drehen_button = tk.CTkButton(
     frame, text="Seiten drehen", command=lambda: rotate_pages(eingabe_text)
 )
 drehen_button.pack(fill="x")
-drehen_eingabe = tk.Entry(frame, textvariable=eingabe_text)
+drehen_eingabe = tk.CTkEntry(frame, textvariable=eingabe_text)
 drehen_eingabe.pack(fill="x")
 
 passwort_text = tk.StringVar(value="")
-decrypt_button = tk.Button(
+decrypt_button = tk.CTkButton(
     frame, text="Entschlüsseln", command=lambda: decrypt(passwort_text)
 )
 decrypt_button.pack(fill="x")
-passwort_eingabe = tk.Entry(frame, textvariable=passwort_text)
+passwort_eingabe = tk.CTkEntry(frame, textvariable=passwort_text)
 passwort_eingabe.pack(fill="x")
 
 
